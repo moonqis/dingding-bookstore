@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>叮叮书店</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chorme=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta name="keywords" content="书店，叮叮书店，图书">
+		<meta name="description" content="叮叮书店是一个销售书籍的网上书店。">
+		<meta name="robots" content="index,follow">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				list-style-type: none;
+				text-decoration: none;
+			}
+
+			header {
+				width: 1260px;
+				height: 150px;
+				background-image:url(img/header.jpg);
+				margin: 0 auto;
+				position: relative;
+			}
+
+			header h1 {
+				position: absolute;
+				top: 40px;
+				left: 79px;
+				font-family: 楷体;
+				font-size: 36px;
+				color: #734026;
+			}
+
+			nav {
+				width: 100%;
+				height: 60px;
+				background: url(img/navbg.jpg);
+				margin: 0;
+			}
+
+			.nav {
+				width: 1260px;
+				height: 60px;
+				margin: 0 auto;
+			}
+
+			.nav>ul {
+				width: 800px;
+				height: 60px;
+				padding: 0;
+				float: left;
+			}
+			.nav li {
+				width: 160px;
+				height: 60px;
+				float: left;
+				position: relative;
+			}
+			.nav a {
+				display: block;
+				width: 160px;
+				height: 60px;
+				font-family: 楷体;
+				font-size: 20px;
+				color: white;
+				text-align: center;
+				line-height: 60px;
+			}
+			.nav a:hover {
+				background: rgba(0, 0, 0, 0.3);
+			}
+			.nav li ul {
+				position: absolute;
+				top: 60px;
+				left: 0;
+				z-index: 999;
+				width: 160px;
+				height: 180px;
+				background: url(img/navbg.jpg);
+				display: none;
+			}
+			.nav li:hover ul {
+				display: block;
+			}
+			
+			#cart {
+				width: 120px;
+				height: 40px;
+				margin-top: 10px ;
+				background-color: #f3f3f3;
+				float: right;
+			}
+			#cart ::before {
+				content: url(img/cart.png);
+				font-size: 20px;
+				color: #aa5500;
+				display: block;
+				margin: 0px 0px 0px 18px;
+				float: left;
+				
+			}
+			
+			#cart a {
+				display: block;
+				float: left;
+				width: 150px;
+				height: 40px;
+				font-size: 20px;
+				color: #aa5500;
+				line-height: 40px;
+				text-align: left;
+			}
+			
+			
+			#cart a:hover {
+				background-color: rgba(0, 0, 0, 0);
+				color: orange;
+			}
+			#content-wrapper {
+				width: 1260px;
+				height: 3381px;
+				background-color: white;
+				margin: 0 auto;
+			}
+			#content-wrapper main {
+				width: 820px;
+				height: 150px;
+				background-color: bisque;
+				margin: 0 auto;
+				float: left;
+			}
+			#content-wrapper aside {
+				width: 396px;
+				height: 3381px;
+				background-color: yellow;
+				margin: 0 auto;
+				float: right;
+			}
+			#content-wrapper footer {
+				width: 100%;
+				height: 160px;
+				background-color: gold;
+			}
+			/* 轮播广告 */
+			#adv{
+				width: 820px;
+				height: 369px;
+				background: no-repeat url;
+				background-size: 820px 369px;
+				animation: lunbo 10s linear infinite;
+				position: relative;
+				margin-bottom: 10px ;
+			}
+			
+			#adv ul{
+				padding-left: 675px;
+				padding-top: 333px;
+				height: 30px;
+				width: 140px;
+			}
+			
+			#adv ul li{
+				float: left;
+				margin: 0 5px 6px 0;
+			}
+			
+			#adv ul li span{
+				display: block;
+				width: 30px;
+				height: 30px;
+				font-size: 14px;
+				line-height: 30px;
+				text-align: center;
+				color: white;
+				border-radius: 30px;
+				background-color: #733f26;
+				position: relative;
+				z-index: 100;
+			}
+			
+			#adv ul li:hover span{
+				background-color: #a67359;
+			}
+			
+			#adv ul li:hover div{
+				width: 820px;
+				height: 369px;
+				background-repeat: no-repeat;
+				background-position: 0 0;
+				background-size: 820px 369px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			#adv ul li.lunbo1:hover div{
+				background-image: url(img/b-ad1.jpg);
+				width: 410px;
+				height: 60px;
+			}
+			
+			#adv ul li.lunbo2:hover div{
+				background-image: url(img/b-ad2.jpg);
+			}
+			
+			#adv ul li.lunbo3:hover div{
+				background-image: url(img/b-ad3.jpg);
+			}
+			
+			#adv ul li.lunbo4:hover div{
+				background-image: url(img/b-ad4.jpg);
+			}
+			
+			/* 本周推荐 */
+			.iron-book::before{
+				content:"\f02d";
+				font-size: 24px;
+				color: #733F26;
+				display: block;
+				float: left;
+				margin-right: 10px;
+			}
+			
+			h2{
+				font-weight: normal;
+				color: #733F26;
+				float: left;
+				font-size: 20px;
+				
+			}
+			.recommend-book{
+				padding: 18px;
+				border-bottom: 1px solid #CCCCCC ;
+				width: 100%;
+			}
+			h3{
+				text-align: center;
+				color: #733F26;
+				line-height: 40px;
+				height: 40px;
+			}
+			.cover{
+				width: 268px;
+				height: 276px;
+				float: left;
+				text-align: center;
+				overflow: hidden;
+			}
+			img{
+				width: 100%;
+			}
+			p{
+				font-size: 14px;
+				line-height: 28px;
+				text-align: left;
+				text-indent: 2em;
+			}
+			mark{
+				background-color: #733F26;
+				color: white;
+			}
+			.description{
+				width: 520px;
+				height: 276px;
+				float: left;
+				text-align: center;
+				
+			}
+			.cart-more{
+				clear: both;
+				width: 242px;
+				margin: 20px auto o auto;
+				height: 33px;
+				padding: 0 400px;
+				
+			}
+			.cart-more a{
+				display: block;
+				width: 118px;
+				height: 38px;
+				margin-right: 3px;
+				font-size: 18px;
+				line-height: 38px;
+				color: white;
+				background-color: #c09d8a;
+				float: left;
+				text-align: center;
+				transition: 0.5s;
+				
+			}
+			.cart-more a:hover{
+				background-color: #733F26;
+				color: orangered;
+			}
+			#recommend img{
+				opacity: 0.6s;
+			}
+			#recommend img:hover{
+				opacity: 1;
+				transition: 2s;
+			}
+			@keyframes lunbo{
+				0%{
+					background: url(img/b-ad1.jpg) no-repeat top left;
+					background-size: 820px 369px;
+				}
+				25%{
+					background: url(img/b-ad2.jpg) no-repeat top left;
+					background-size: 820px 369px;
+				}
+				50%{
+					background: url(img/b-ad3.jpg) no-repeat top left;
+					background-size: 820px 369px;
+				}
+				75%{
+					background: url(img/b-ad4.jpg) no-repeat top left;
+					background-size: 820px 369px;
+				}
+				100%{
+					background: url(img/b-ad1.jpg) no-repeat top left;
+					background-size: 820px 369px;
+				}
+			}
+			#new{
+				border-bottom: 1px dashed   #cccccc;
+				margin-bottom: 26px;
+				margin-bottom: 18px;
+				width: 820px;
+				height: 440px;
+				overflow: hidden;
+			}
+			.icon-new:before{
+				content: "\f044";
+				font-size: 24px;
+				color: #734026;
+				display: block;
+				float: left;
+				margin-right: 10px;
+			}
+			.content{
+				padding-top: 18px;
+				clear: both;
+			}
+			.book{
+				width: 392px;
+				height: 352px;
+				margin: 0 9px;
+				float: left;
+			}
+			.effect-1{
+				width: 390px;
+				height: 350px;
+				border: 1px solid #cccccc;
+				overflow: hidden;
+				position: relative;
+				perspective: 800px;
+			}
+			.effect-1.image-box{
+				transform: rotateX(0deg);
+				transform-origin: center bottom;
+				transition: 1s;
+			}
+			.effect-1:hover.image-box{
+				transform: rotateX(75deg);
+				transform-origin: center bottom;
+			}
+			.effect-1.text-desc{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				margin-bottom: 25px;
+				padding: 10px;
+				opacity: 0;
+				z-index: -1;
+				transition: 2s;
+			}
+			.effect-1:hover.text-desc{
+				opacity:1;
+			}
+			#sales{
+				border-bottom: 1px dashed   #cccccc;
+				margin-bottom: 26px;
+				margin-bottom: 18px;
+				width: 820px;
+				height: 500px;
+				overflow: hidden;
+			}
+			#sales.icon-book:before{
+				content: "\f295";
+				font-size: 24px;
+				color: #733f26;
+				display: block;
+				float: left;
+				margin-right: 10px;
+			}
+			#sales.effect-1{
+				height: 420px;
+			}
+			#sales.effect-1.image-box{
+				height: 350px;
+				overflow: hidden;
+				transform: rotateY(0deg);
+				transform-origin: center center;
+				transition: 1s;
+				opacity: 1;
+			}
+			#sales.effect-1.image-box img{
+				height: 350px;
+			}
+			#sales.effect-1.text-desc{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				margin-bottom: 25px;
+				padding: 10px;
+				opacity: 0;
+				z-index: -1;
+				transition: 2s;
+			}
+			#sales.effect-1:hover.text-desc{
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>叮叮书店</h1>
+		</header>
+		<nav>
+			<div class="nav">
+				<ul>
+					<li><a href="#">首页</a></li>
+					<li><a href="#">书籍分类</a>
+						<ul>
+							<li><a href="">编程语言</a></li>
+							<li><a href="">数据库</a></li>
+							<li><a href="">图形图像</a></li>
+						</ul>
+					</li>
+					<li><a href="#">特刊降价</a></li>
+					<li><a href="#">联系我们</a></li>
+					<li><a href="#">关于我们</a></li>
+				</ul>
+				<div id="cart">
+					<a href="#">购物车</a>
+				</div>
+			</div>
+		</nav>
+		<div id="content-wrapper" class='container'>
+			<main>
+				<div id="adv">
+					<ul>
+						<li class="lunbo1">
+							<span>1</span>
+							<div></div>
+						</li>
+						<li class="lunbo2">
+							<span>2</span>
+							<div></div>
+						</li>
+						<li class="lunbo3">
+							<span>3</span>
+							<div></div>
+						</li>
+						<li class="lunbo4">
+							<span>4</span>
+							<div></div>
+						</li>
+					</ul>
+				</div>
+				<section id="recommend">
+					<span class="icon-book"></span>
+					<h2>本周推荐</h2>
+					<section class="recommend-book">
+						<h3 align="center">《HTML5权威指南》</h3>
+						<div class="content">
+							<div class="cover">
+								<a href="#"><img src="img/prod2.jpg" alt="HTML5权威指南"/> </a>
+							</div>
+							<div class="description">
+								<p>作为下一代Web标准，
+								<mark>HTML5</mark> 致力于为互联网开发者搭建更加便捷、开放的沟通平台。业界普遍认为，在未来几年内，
+								<mark>HTML5</mark> 
+								HTML5 无疑将成为移动互联网领域的主宰者。本书是系统学习网页设计和移动设计的参考图书。
+									
+								</p>
+								<p>
+									Adam Freeman，曾在多家名企担任高级职务，现为畅销技术图书作家，著有多部C#、.NET和Java方面的大部头作品。其中《ASP.NET 4高级程序设计（第4版）》、《精通ASP.NET MVC 3框架（第3版）》销量均在同品种中名列前茅，备受读者推崇。Freeman专门为网页开发新手和网页设计师打造的经典参考书，这本书秉承作者的一贯风格，幽默风趣、简约凝练、逻辑性强，是广大Web开发人员的必读经典。
+									
+								</p>
+								
+							</div>
+						</div>
+						<div class="cart-more">
+							<a class="cart" href="cart.html">加入购物车</a>
+							<a class="more" href="detail.html">详细内容</a>
+						</div>
+					</section>
+					<section class="recommend-book">
+						<h3 align="center">《JavaScript权威指南》</h3>
+						<div class="content">
+							<div class="cover">
+								<a href="#"><img src="img/prod3.jpg" alt="JavaScript权威指南"> </a>
+							</div>
+							<div class="description">
+								<p>
+									经典的JavaScript工具书，从1996年以来，本书已经成为JavaScript程序员心中的《圣经》。
+								</p>
+								<p>
+									David Flanagan，是一名程序员，也是一名作家 。他在O’Reilly出版的其他畅销书还包括《JavaScript Pocket Reference》、《The Ruby Programming Language》、以及《Java in a Nutshell》。David毕业于麻省理工学院，获得计算机科学与工程学位。他和妻子和孩子一起生活在西雅图和温哥华之间的美国太平洋西北海岸。
+								</p>
+							</div>
+						</div>
+						<div class="cart-more">
+							<a class="cart" href="cart.html">加入购物车</a>
+							<a class="more" href="detail.html">详细内容</a>
+						</div>
+					</section>
+				</section> 
+				<section id="new">
+					<span class="icon-new"></span>
+					<h2>最近新书</h2>
+					<div class="content">
+						<section class="book">
+							<h3> 《HTML5+CSS3从入门到精通》 </h3>
+							<div class="effect-1">
+								<div class="image-box">
+									<img src="img/prod4.jpg" alt="HTML+CSS3从入门到精通">
+								</div>
+								<div class="text-desc">
+									<h3>《HTML5+CSS3从入门到精通》</h3>
+									<p>
+										《<mark>HTML5</mark>
+										+CSS3从入门到精通》通过基础知识+中小实例+综合案例的方式，讲述了用<mark>HTML5</mark> +
+										CSS3设计构建网站的必备知识，相对于权威指南、高级程序设计、开发指南同类图书，本书是一本适合快速入手的自学教程。
+									</p>
+								</div>
+							</div>
+						</section>
+						<section class="book">
+							<h3>《响应式Web设计》</h3>
+							<div class="effect-1">
+								<div class="image-box">
+									<img src="img/prod5.jpg" alt="响应式Web设计">
+								</div>
+								<div class="text-desc">
+									<h3>《响应式Web设计》</h3>
+									<p>
+										《响应式Web设计：<mark>HTML5</mark>  
+										和CSS3实战》将当前Web设计中热门的响应式设计技术与 <mark>HTML5</mark> 和CSS3结合起来，
+										为读者全面深入地讲解了针对各种屏幕大小设计和开发现代网站的各种技术。《响应式Web设计：
+										<mark>HTML5</mark>  和CSS3实战》适合各个层次的Web开发和设计人员阅读。
+									</p>
+								</div>
+							</div>
+						</section>
+					</div>
+				</section>
+				
+				<section id="sales">
+					<span class="icon-book"></span>
+					<h2>最近促销</h2>
+					<div class="content">
+						<section class="book">
+							<h3>《HTML5和CSS3实例教程》</h3>
+							<a href="#"><img src="img/prod1.jpg" alt="HTML5和CSS3实例教程"
+							class="promotion"></a>
+						</section>
+						<section class="book">
+							<h3>《JavaScript权威指南》</h3>
+							<a href="#"><img src="img/prod3.jpg" alt="JavaScript权威指南"
+							class="promotion"></a>
+						</section>
+					</div>
+				</section>
+			</main>
+			<aside>
+				<img src='img/ad1.jpg' alt=""/>
+				<img src='img/ad2.jpg' alt=""/>
+				<img src='img/ad3.jpg' alt=""/>
+			</aside>
+		</div>
+		<div id="footer-wrapper">
+			<footer>
+			<nav>
+				<div class="nav">
+					<ul>
+						<li><a href="#">首页</a></li>
+						<li><a href="#">关于我们</a></li>
+						<li><a href="#">服务条款</a></li>
+						<li><a href="#">隐私条款</a></li>
+						<li><a href="#">联系我们</a></li>
+					</ul>
+				</div>
+			</nav>
+			</footer>
+		</div>
+		
+	</body>
+</html>
